@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1526335020382
+Build-Jdk: 1.8.0_171
+Built-By: ayalak
+Bundle-Activator: ec.devnull.rest.client.Activator
+Bundle-Description: Karaf Boot ::: Spring Boot Test APP
+Bundle-DocURL: http://www.spring.io
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Karaf Boot ::: Spring Boot Test APP
+Bundle-SymbolicName: karafboot-testapp
+Bundle-Vendor: Pivotal Software, Inc.
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Import-Package: org.osgi.framework;version="[1.8,2)",javax.naming,org.xm
+ l.sax,org.xml.sax.ext,org.xml.sax.helpers,javax.xml.bind,javax.xml.name
+ space,javax.xml.parsers,javax.xml.stream,javax.xml.stream.events,javax.
+ xml.transform,javax.xml.transform.dom,javax.xml.transform.sax,javax.xml
+ .transform.stax,javax.xml.transform.stream,javax.xml.ws,javax.managemen
+ t,javax.management.modelmbean,javax.management.openmbean,javax.security
+ .auth,javax.security.auth.callback,javax.security.auth.login,javax.secu
+ rity.auth.spi,javax.security.auth.x500,javax.security.cert,org.ietf.jgs
+ s,javax.annotation,javax.net,javax.net.ssl,org.w3c.dom,org.w3c.dom.ls,j
+ avax.crypto,javax.crypto.spec,ec.devnull.springboot.config;version="[1.
+ 0,2)",javax.xml.bind.annotation,org.osgi.util.tracker;version="[1.5,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.5.0.201709291849

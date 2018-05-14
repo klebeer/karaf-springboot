@@ -1,0 +1,17 @@
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/BasicAuthenticationPoint.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/model/Order.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/model/CollectionRule.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/model/WorkorderSummary.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/APIKeyAuthenticationFilter.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/APISecurityConfig.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/SecurityConstants.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/model/OrderResponse.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/controller/OrderController.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/APIKeyAuthFilter.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/TestPropertiesPostProcessor.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/Activator.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/WebApplicationConfig.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/JWTAuthorizationFilter.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/config/APIAuthenticationManager.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/JWTRestApplicationDummy.java
+/Users/ayalak/Proyectos/git/karaf-springboot/karafboot-testapp/src/main/java/ec/devnull/rest/client/model/RequiresRetry.java

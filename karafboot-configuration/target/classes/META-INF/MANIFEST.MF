@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1526335014393
+Build-Jdk: 1.8.0_171
+Built-By: ayalak
+Bundle-Activator: ec.devnull.springboot.config.Activator
+Bundle-Description: Karaf Boot ::: Configuration
+Bundle-ManifestVersion: 2
+Bundle-Name: Karaf Boot ::: Configuration
+Bundle-SymbolicName: karafboot-configuration
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: ec.devnull.springboot.config;uses:="org.osgi.framework,o
+ rg.osgi.service.cm";version="1.0.0"
+Import-Package: org.osgi.framework;version="[1.8,2)",org.osgi.service.cm
+ ;version="[1.5,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.5.0.201709291849

@@ -1,0 +1,17 @@
+ec/devnull/rest/client/config/APISecurityConfig.class
+ec/devnull/rest/client/config/WebApplicationConfig.class
+ec/devnull/rest/client/JWTRestApplicationDummy.class
+ec/devnull/rest/client/config/SecurityConstants.class
+ec/devnull/rest/client/TestPropertiesPostProcessor.class
+ec/devnull/rest/client/config/BasicAuthenticationPoint.class
+ec/devnull/rest/client/config/JWTAuthorizationFilter.class
+ec/devnull/rest/client/Activator.class
+ec/devnull/rest/client/config/APIKeyAuthFilter.class
+ec/devnull/rest/client/model/RequiresRetry.class
+ec/devnull/rest/client/model/CollectionRule.class
+ec/devnull/rest/client/controller/OrderController.class
+ec/devnull/rest/client/model/WorkorderSummary.class
+ec/devnull/rest/client/model/OrderResponse.class
+ec/devnull/rest/client/config/APIKeyAuthenticationFilter.class
+ec/devnull/rest/client/model/Order.class
+ec/devnull/rest/client/config/APIAuthenticationManager.class

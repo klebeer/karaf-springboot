@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ec.devnull</groupId>
+    <artifactId>karaf-springboot</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>Karaf Boot ::: Karaf Spring Boot Support</name>
+    <description>Karaf Boot ::: Karaf Spring Boot Support</description>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javassist.version>3.22.0-GA</javassist.version>
+        <spring.version>4.3.14.RELEASE</spring.version>
+        <tomcat.version>8.5.27</tomcat.version>
+        <springboot.version>1.5.12.RELEASE</springboot.version>
+        <maven-bundle-plugin.version>3.5.0</maven-bundle-plugin.version>
+        <osgi.version>6.0.0</osgi.version>
+        <junit.version>4.12</junit.version>
+        <servicemix.bundles.javax-inject.version>1_2</servicemix.bundles.javax-inject.version>
+        <pax.exam.version>4.11.0</pax.exam.version>
+        <karaf.version>4.2.0</karaf.version>
+    </properties>
+
+    <modules>
+        <module>karafboot-test</module>
+        <module>karafboot-configuration</module>
+        <module>karafboot-patch</module>
+        <module>karafboot-testapp</module>
+
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-junit4</artifactId>
+                <version>${pax.exam.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam</artifactId>
+                <version>${pax.exam.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-cm</artifactId>
+                <version>${pax.exam.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-container-native</artifactId>
+                <version>${pax.exam.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-link-mvn</artifactId>
+                <version>${pax.exam.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-container-karaf</artifactId>
+                <version>${pax.exam.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.servicemix.bundles</groupId>
+                <artifactId>org.apache.servicemix.bundles.javax-inject</artifactId>
+                <version>${servicemix.bundles.javax-inject.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

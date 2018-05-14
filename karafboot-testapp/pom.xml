@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+    <parent>
+
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.12.RELEASE</version>
+        <relativePath/>
+
+    </parent>
+
+
+    <groupId>ec.devnull</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>karafboot-testapp</artifactId>
+
+    <name>Karaf Boot ::: Spring Boot Test APP</name>
+    <description>Karaf Boot ::: Spring Boot Test APP</description>
+
+    <packaging>bundle</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <start-class>ec.devnull.rest.client.JWTRestApplicationDummy</start-class>
+        <unpacked.directory>${project.build.outputDirectory}</unpacked.directory>
+        <maven-bundle-plugin.version>3.5.0</maven-bundle-plugin.version>
+        <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+        <spring.version>4.3.14.RELEASE</spring.version>
+        <tomcat.version>8.5.27</tomcat.version>
+        <springboot.version>1.5.12.RELEASE</springboot.version>
+
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-core</artifactId>
+                </exclusion>
+
+            </exclusions>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Swagger 2 doc dependency -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+
+        <!-- Swagger UI dependency -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>ec.devnull</groupId>
+            <artifactId>karafboot-patch</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <!-- 1. Phase process-sources: Unpack jasper-el to the target/dependency/ folder -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.springframework</groupId>
+                                    <artifactId>spring-core</artifactId>
+                                    <version>${spring.version}</version>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.tomcat.embed</groupId>
+                                    <artifactId>tomcat-embed-core</artifactId>
+                                    <version>${tomcat.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+
+                            <outputDirectory>${unpacked.directory}</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- 2. Phase compile (implicit) - compile the bytecode manipulation code -->
+
+            <!-- 3. Phase process-classes: do the bytecode magic -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>ec.devnull.springboot.patch.JavassistTransformer</mainClass>
+                    <arguments>
+                        <argument>${unpacked.directory}</argument>
+                    </arguments>
+                    <includePluginDependencies>true</includePluginDependencies>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                        <version>${javassist.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>ec.devnull</groupId>
+                        <artifactId>karafboot-patch</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- 4. Phase test: tun the tests of the processed stuff -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <configuration>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${unpacked.directory}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+
+                        <configuration>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>org.osgi:*</exclude>
+                                </excludes>
+                            </artifactSet>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.handlers</resource>
+                                </transformer>
+                                <transformer
+                                        implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+                                    <resource>META-INF/spring.factories</resource>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.schemas</resource>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${start-class}</mainClass>
+                                </transformer>
+                            </transformers>
+
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${maven-bundle-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+                        <Bundle-Activator>ec.devnull.rest.client.Activator</Bundle-Activator>
+                        <Export-Package>
+
+                        </Export-Package>
+                        <Import-Package>
+                            ec.devnull.springboot.config,
+                            org.osgi.framework,
+                            javax.naming,
+                            org.xml.sax.*,
+                            javax.xml.*,
+                            javax.management.*,
+                            javax.security.*,
+                            org.ietf.jgss,
+                            javax.annotation,
+                            javax.net.*,
+                            org.w3c.*,
+                            javax.xml.bind.annotation,
+                            javax.crypto,
+                            javax.crypto.spec,
+                            org.osgi.util.tracker
+
+                        </Import-Package>
+
+                    </instructions>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+
+    </build>
+
+</project>
