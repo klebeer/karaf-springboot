@@ -1,4 +1,4 @@
-package ec.devnull.rest.springboot.app.test;
+package ec.devnull.springboot.app.test;
 
 import ec.devnull.springboot.config.ConfigService;
 import ec.devnull.springboot.test.AbstractKarafBootTest;
