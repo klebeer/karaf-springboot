@@ -12,6 +12,10 @@
     <artifactId>karafboot-test</artifactId>
 
 
+    <name>Karaf Boot ::: Test</name>
+    <description>Karaf Boot ::: Test</description>
+
+
     <dependencies>
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
@@ -62,11 +66,41 @@
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>ec.devnull</groupId>
+            <artifactId>karafboot-testapp</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j-slf4j}</version>
+            <scope>test</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
 
     </dependencies>
 

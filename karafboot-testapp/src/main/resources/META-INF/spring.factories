@@ -1,1 +1,1 @@
-org.springframework.boot.env.EnvironmentPostProcessor=ec.devnull.rest.client.TestPropertiesPostProcessor
+org.springframework.boot.env.EnvironmentPostProcessor=ec.devnull.rest.springboot.app.TestPropertiesPostProcessor

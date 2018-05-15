@@ -5,17 +5,12 @@
 
 
     <parent>
-
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.12.RELEASE</version>
-        <relativePath/>
-
+        <artifactId>karaf-springboot</artifactId>
+        <groupId>ec.devnull</groupId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-
     <groupId>ec.devnull</groupId>
-    <version>1.0.0-SNAPSHOT</version>
 
 
     <modelVersion>4.0.0</modelVersion>
@@ -28,18 +23,9 @@
     <packaging>bundle</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <start-class>ec.devnull.rest.client.JWTRestApplicationDummy</start-class>
         <unpacked.directory>${project.build.outputDirectory}</unpacked.directory>
-        <maven-bundle-plugin.version>3.5.0</maven-bundle-plugin.version>
-        <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
-        <spring.version>4.3.14.RELEASE</spring.version>
-        <tomcat.version>8.5.27</tomcat.version>
-        <springboot.version>1.5.12.RELEASE</springboot.version>
-
+        <start-class>ec.devnull.rest.springboot.app.JWTRestApplicationDummy</start-class>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -54,10 +40,8 @@
                     <groupId>org.apache.tomcat.embed</groupId>
                     <artifactId>tomcat-embed-core</artifactId>
                 </exclusion>
-
             </exclusions>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -128,14 +112,17 @@
         </dependency>
 
 
-
-
     </dependencies>
 
     <build>
 
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
 
+            </plugin>
             <!-- 1. Phase process-sources: Unpack jasper-el to the target/dependency/ folder -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -175,7 +162,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>${exec-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -200,7 +187,7 @@
                     <dependency>
                         <groupId>ec.devnull</groupId>
                         <artifactId>karafboot-patch</artifactId>
-                        <version>1.0.0-SNAPSHOT</version>
+                        <version>${project.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -225,6 +212,13 @@
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <version>${springboot.version}</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -275,7 +269,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
-                        <Bundle-Activator>ec.devnull.rest.client.Activator</Bundle-Activator>
+                        <Bundle-Activator>ec.devnull.rest.springboot.app.Activator</Bundle-Activator>
                         <Export-Package>
 
                         </Export-Package>

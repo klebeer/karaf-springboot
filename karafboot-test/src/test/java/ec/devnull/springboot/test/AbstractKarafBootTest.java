@@ -46,7 +46,7 @@ public class AbstractKarafBootTest {
         return composite(
                 karafDistributionConfiguration().frameworkUrl(karafUrl)
                         .unpackDirectory(new File("target/exam")).useDeployFolder(false), //
-                configureConsole().ignoreRemoteShell().ignoreLocalConsole(),
+                configureConsole(),
                 keepRuntimeFolder());
     }
 }

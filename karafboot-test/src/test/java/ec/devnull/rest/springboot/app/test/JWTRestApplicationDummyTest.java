@@ -1,4 +1,4 @@
-package ec.devnull.springboot.config.test;
+package ec.devnull.rest.springboot.app.test;
 
 import ec.devnull.springboot.config.ConfigService;
 import ec.devnull.springboot.test.AbstractKarafBootTest;
@@ -8,8 +8,6 @@ import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.PaxExam;
-import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
-import org.ops4j.pax.exam.spi.reactors.PerMethod;
 import org.ops4j.pax.exam.util.Filter;
 
 import javax.inject.Inject;
@@ -21,7 +19,7 @@ import static org.ops4j.pax.exam.CoreOptions.options;
  * @author Kleber Ayala
  */
 @RunWith(PaxExam.class)
-public class SrpingBootConfigManagerTest extends AbstractKarafBootTest {
+public class JWTRestApplicationDummyTest extends AbstractKarafBootTest {
 
 
     @Inject
@@ -33,15 +31,18 @@ public class SrpingBootConfigManagerTest extends AbstractKarafBootTest {
         return options(
                 karafDefaults(),
                 applyConfig("karaf.springboot-test.cfg"),
-                mvnBundle("ec.devnull", "karafboot-configuration")
+                mvnBundle("ec.devnull", "karafboot-configuration"),
+                mvnBundle("ec.devnull", "karafboot-testapp")
+
         );
     }
 
     @Test
-    public void getPropertiesTest() {
+    public void springBootInstalledTest() {
         Dictionary dictionary = configService.getProperties();
         Assert.assertNotNull(dictionary);
         Assert.assertEquals("test", dictionary.get("name"));
     }
 
 }
+

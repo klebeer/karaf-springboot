@@ -10,6 +10,6 @@ public class TestPropertiesPostProcessor extends PropertiesPostProcessor {
 
     @Override
     public String getSpringInstanceName() {
-        return "test1";
+        return "test";
     }
 }
