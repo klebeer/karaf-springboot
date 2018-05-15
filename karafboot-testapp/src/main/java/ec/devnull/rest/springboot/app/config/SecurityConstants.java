@@ -10,7 +10,7 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.config;
+package ec.devnull.rest.springboot.app.config;
 
 public class SecurityConstants {
     public static final String SECRET = "SecretKeyToGenJWTs";

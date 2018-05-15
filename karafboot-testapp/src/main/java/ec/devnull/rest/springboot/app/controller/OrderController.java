@@ -10,11 +10,11 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.controller;
+package ec.devnull.rest.springboot.app.controller;
 
 
-import ec.devnull.rest.client.model.Order;
-import ec.devnull.rest.client.model.OrderResponse;
+import ec.devnull.rest.springboot.app.model.Order;
+import ec.devnull.rest.springboot.app.model.OrderResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

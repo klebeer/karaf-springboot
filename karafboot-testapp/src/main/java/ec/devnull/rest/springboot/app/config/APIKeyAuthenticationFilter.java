@@ -10,7 +10,7 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.config;
+package ec.devnull.rest.springboot.app.config;
 
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

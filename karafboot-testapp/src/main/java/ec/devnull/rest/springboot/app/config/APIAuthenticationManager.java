@@ -10,7 +10,7 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.config;
+package ec.devnull.rest.springboot.app.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;

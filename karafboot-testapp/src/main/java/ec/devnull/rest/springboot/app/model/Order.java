@@ -10,7 +10,7 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.model;
+package ec.devnull.rest.springboot.app.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

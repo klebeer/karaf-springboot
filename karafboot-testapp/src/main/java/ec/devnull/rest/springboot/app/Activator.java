@@ -1,4 +1,4 @@
-package ec.devnull.rest.client;
+package ec.devnull.rest.springboot.app;
 
 import ec.devnull.springboot.patch.JoinClassLoader;
 import ec.devnull.springboot.patch.SpringBootURLFactory;

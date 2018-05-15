@@ -10,7 +10,7 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.config;
+package ec.devnull.rest.springboot.app.config;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

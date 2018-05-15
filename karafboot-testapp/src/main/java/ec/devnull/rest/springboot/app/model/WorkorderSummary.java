@@ -11,7 +11,7 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.model;
+package ec.devnull.rest.springboot.app.model;
 
 
 public class WorkorderSummary {

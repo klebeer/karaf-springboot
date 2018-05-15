@@ -10,9 +10,14 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client;
+package ec.devnull.rest.springboot.app;
 
 
+import ec.devnull.rest.springboot.app.config.APIAuthenticationManager;
+import ec.devnull.rest.springboot.app.config.APISecurityConfig;
+import ec.devnull.rest.springboot.app.config.BasicAuthenticationPoint;
+import ec.devnull.rest.springboot.app.config.WebApplicationConfig;
+import ec.devnull.rest.springboot.app.controller.OrderController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,12 +25,12 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 
-@Import({ec.devnull.rest.client.config.APIAuthenticationManager.class,
-        ec.devnull.rest.client.config.APISecurityConfig.class,
-        ec.devnull.rest.client.config.BasicAuthenticationPoint.class,
-        ec.devnull.rest.client.config.WebApplicationConfig.class,
-        ec.devnull.rest.client.TestPropertiesPostProcessor.class,
-        ec.devnull.rest.client.controller.OrderController.class,
+@Import({APIAuthenticationManager.class,
+        APISecurityConfig.class,
+        BasicAuthenticationPoint.class,
+        WebApplicationConfig.class,
+        TestPropertiesPostProcessor.class,
+        OrderController.class,
         springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration.class,
         springfox.documentation.swagger2.mappers.ModelMapperImpl.class,
         springfox.documentation.swagger2.mappers.ParameterMapperImpl.class,

@@ -11,14 +11,18 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.model;
+package ec.devnull.rest.springboot.app.model;
 
 
-public class RequiresRetry {
+public class CollectionRule {
 
     private Integer sequence;
+    private String ruleType;
     private String since;
     private String until;
+    private String currency;
+    private Double amount;
+    private Double percent;
 
     public Integer getSequence() {
         return sequence;
@@ -26,6 +30,14 @@ public class RequiresRetry {
 
     public void setSequence(Integer sequence) {
         this.sequence = sequence;
+    }
+
+    public String getRuleType() {
+        return ruleType;
+    }
+
+    public void setRuleType(String ruleType) {
+        this.ruleType = ruleType;
     }
 
     public String getSince() {
@@ -42,6 +54,30 @@ public class RequiresRetry {
 
     public void setUntil(String until) {
         this.until = until;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Double getPercent() {
+        return percent;
+    }
+
+    public void setPercent(Double percent) {
+        this.percent = percent;
     }
 
 

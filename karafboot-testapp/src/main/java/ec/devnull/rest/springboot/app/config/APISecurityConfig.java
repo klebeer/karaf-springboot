@@ -10,11 +10,10 @@
  * with FISA Group.
  */
 
-package ec.devnull.rest.client.config;
+package ec.devnull.rest.springboot.app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
