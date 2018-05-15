@@ -27,6 +27,9 @@
         <servicemix.bundles.javax-inject.version>1_2</servicemix.bundles.javax-inject.version>
         <pax.exam.version>4.11.0</pax.exam.version>
         <karaf.version>4.2.0</karaf.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <log4j-slf4j>2.11.0</log4j-slf4j>
+        <pax.url.version>2.5.4</pax.url.version>
     </properties>
 
     <modules>
@@ -70,7 +73,11 @@
                 <artifactId>pax-exam-container-karaf</artifactId>
                 <version>${pax.exam.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.ops4j.pax.url</groupId>
+                <artifactId>pax-url-aether</artifactId>
+                <version>${pax.url.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.servicemix.bundles</groupId>

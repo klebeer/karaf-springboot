@@ -13,14 +13,12 @@
 
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
             <artifactId>org.apache.karaf.features.core</artifactId>
             <version>${karaf.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
             <artifactId>standard</artifactId>
@@ -28,6 +26,7 @@
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
+
 
         <!-- Dependencies for pax exam karaf container -->
         <dependency>
@@ -46,13 +45,16 @@
             <artifactId>pax-exam</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.ops4j.pax.url</groupId>
+            <artifactId>pax-url-aether</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.servicemix.bundles</groupId>
             <artifactId>org.apache.servicemix.bundles.javax-inject</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -78,7 +80,6 @@
             <plugin>
                 <groupId>org.apache.servicemix.tooling</groupId>
                 <artifactId>depends-maven-plugin</artifactId>
-                <version>1.4.0</version>
                 <executions>
                     <execution>
                         <id>generate-depends-file</id>
@@ -91,12 +92,12 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.21.0</version>
                 <configuration>
                     <forkMode>always</forkMode>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 
 </project>
