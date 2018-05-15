@@ -25,6 +25,7 @@
             <version>${karaf.version}</version>
             <classifier>features</classifier>
             <type>xml</type>
+            <scope>test</scope>
         </dependency>
 
 
@@ -55,6 +56,18 @@
             <artifactId>org.apache.servicemix.bundles.javax-inject</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ec.devnull</groupId>
+            <artifactId>karafboot-configuration</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j-slf4j}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
