@@ -55,7 +55,7 @@ public class JWTRestApplicationDummyTest extends AbstractKarafBootTest {
 
         Optional<String> jwt=restClientService.login("601f1889667efaebb33b8c12572835da3f027f78");
 
-        Assert.assertThat(jwt.get(), CoreMatchers.containsString("CoreMatchers"));
+        Assert.assertThat(jwt.get(), CoreMatchers.containsString("Bearer"));
         System.out.println("JSON WEB TOKEN-->".concat(jwt.get()));
     }
 
