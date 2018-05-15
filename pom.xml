@@ -34,6 +34,8 @@
         <springfox-swagger2.version>2.8.0</springfox-swagger2.version>
         <log4j2-version>2.11.0</log4j2-version>
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
+        <feign.version>9.6.0</feign.version>
+        <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
     </properties>
 
     <modules>
@@ -41,11 +43,29 @@
         <module>karafboot-patch</module>
         <module>karafboot-testapp</module>
         <module>karafboot-test</module>
+        <module>dummy-bundle</module>
     </modules>
 
     <dependencyManagement>
 
         <dependencies>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-okhttp</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-gson</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-slf4j</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
