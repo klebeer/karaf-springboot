@@ -1,0 +1,12 @@
+language: java
+sudo: false # faster builds
+cache:
+  directories:
+  - $HOME/.m2
+jdk:
+- oraclejdk8
+
+script: "mvn cobertura:cobertura"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t 30850c28-a993-45dd-a469-9f1ea33a92a0
