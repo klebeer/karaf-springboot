@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.PaxExam;
+import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
+import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.ops4j.pax.exam.util.Filter;
 
 import javax.inject.Inject;
@@ -22,6 +24,7 @@ import static org.ops4j.pax.exam.CoreOptions.options;
  * @author Kleber Ayala
  */
 @RunWith(PaxExam.class)
+@ExamReactorStrategy(PerClass.class)
 public class JWTRestApplicationDummyTest extends AbstractKarafBootTest {
 
 

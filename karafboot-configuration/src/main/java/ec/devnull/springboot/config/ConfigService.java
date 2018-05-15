@@ -9,6 +9,6 @@ import java.util.Dictionary;
  */
 public interface ConfigService {
 
-    Dictionary getProperties();
+    Dictionary<String, String> getProperties();
 
 }

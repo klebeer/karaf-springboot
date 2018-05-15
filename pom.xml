@@ -36,6 +36,7 @@
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
         <feign.version>9.6.0</feign.version>
         <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+        <depends-maven-plugin.version>1.4.0</depends-maven-plugin.version>
     </properties>
 
     <modules>

@@ -4,7 +4,6 @@ import ec.devnull.springboot.config.ConfigService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Filter;
 import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.util.tracker.ServiceTracker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
@@ -20,19 +19,16 @@ import java.util.Map;
 /**
  * @author Kleber Ayala
  */
+@SuppressWarnings("unchecked")
 public abstract class PropertiesPostProcessor implements EnvironmentPostProcessor, Ordered {
 
-    public static final int DEFAULT_ORDER = Ordered.LOWEST_PRECEDENCE + 1000;
+
     /**
      * Name of the custom property source added by this post processor class
      */
     private static final String PROPERTY_SOURCE_NAME = "karafProperties";
     private Map<String, ServiceTracker<?, ?>> trackers = new HashMap<>();
 
-
-    /**
-     * Adds Spring Environment custom logic. This custom logic fetch properties from database and setting highest precedence
-     */
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
 
@@ -43,35 +39,26 @@ public abstract class PropertiesPostProcessor implements EnvironmentPostProcesso
             String symbolicname = "(name=" + getSpringInstanceName() + ")";
             Filter filter = FrameworkUtil.createFilter("(&" + objectclass + symbolicname + ")");
 
-            ServiceTracker serviceTracker = new ServiceTracker(bundleContext, filter, null);
+            ServiceTracker<ConfigService, ConfigService> serviceTracker = new ServiceTracker<>(bundleContext, filter, null);
+
             serviceTracker.open();
             trackers.put(getSpringInstanceName(), serviceTracker);
 
-        } catch (InvalidSyntaxException e) {
-            e.printStackTrace();
-        }
-
-        Map<String, Object> propertySource = new HashMap<>();
-
-        try {
-
-            ServiceTracker serviceTracker = trackers.get(getSpringInstanceName());
-
-            ConfigService configService = (ConfigService) serviceTracker.getService();
+            ConfigService configService = serviceTracker.getService();
             Dictionary<String, String> properties = configService.getProperties();
 
-
             Enumeration<String> e = properties.keys();
+            Map<String, Object> propertySource = new HashMap<>();
+
             while (e.hasMoreElements()) {
                 String propName = e.nextElement();
                 propertySource.put(propName, properties.get(propName));
             }
 
-            // Create a custom property source with the highest precedence and add it to Spring Environment
             environment.getPropertySources().addFirst(new MapPropertySource(PROPERTY_SOURCE_NAME, propertySource));
 
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching properties from Karaf");
+            throw new IllegalStateException("Error fetching properties from Karaf");
         }
     }
 
@@ -79,6 +66,6 @@ public abstract class PropertiesPostProcessor implements EnvironmentPostProcesso
 
     @Override
     public int getOrder() {
-        return DEFAULT_ORDER;
+        return Ordered.LOWEST_PRECEDENCE + 1000;
     }
 }

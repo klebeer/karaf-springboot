@@ -18,7 +18,7 @@ public class KarafConfigService implements ConfigService {
     }
 
     @Override
-    public Dictionary getProperties() {
+    public Dictionary<String, String> getProperties() {
         return this.properties;
     }
 }

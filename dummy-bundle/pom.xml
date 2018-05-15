@@ -12,6 +12,10 @@
     <artifactId>dummy-bundle</artifactId>
     <packaging>bundle</packaging>
 
+    <name>Karaf Boot ::: Dummy Bundle</name>
+    <description>Karaf Boot ::: Dummy Bundle</description>
+
+
     <dependencies>
         <dependency>
             <groupId>io.github.openfeign</groupId>
@@ -52,7 +56,10 @@
                         <Bundle-Activator>ec.devnull.springboot.dummy.Activator</Bundle-Activator>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
-                        <Export-Package>ec.devnull.springboot.dummy.service</Export-Package>
+                        <Export-Package>
+                            ec.devnull.springboot.dummy.service,
+                            ec.devnull.springboot.dummy.model
+                        </Export-Package>
                         <Import-Package>
                             org.osgi.framework,
                             org.osgi.service.cm,
