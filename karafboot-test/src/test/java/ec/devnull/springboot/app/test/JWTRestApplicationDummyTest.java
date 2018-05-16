@@ -49,11 +49,15 @@ public class JWTRestApplicationDummyTest extends AbstractKarafBootTest {
     }
 
     @Test
-    public void springBootInstalledTest() {
+    public void getPropertiesTest() {
         Dictionary dictionary = configService.getProperties();
-        Assert.assertNotNull(configService);
+        Assert.assertNotNull(dictionary);
         Assert.assertEquals("test", dictionary.get("name"));
+    }
 
+
+    @Test
+    public void springBootInstalledTest() {
         Assert.assertNotNull(restClientService);
 
         Optional<String> jwt=restClientService.login("601f1889667efaebb33b8c12572835da3f027f78");
