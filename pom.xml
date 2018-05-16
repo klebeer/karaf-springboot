@@ -20,7 +20,7 @@
         <javassist.version>3.22.0-GA</javassist.version>
         <spring.version>4.3.14.RELEASE</spring.version>
         <tomcat.version>8.5.27</tomcat.version>
-        <springboot.version>1.5.12.RELEASE</springboot.version>
+        <springboot.version>1.5.13.RELEASE</springboot.version>
         <maven-bundle-plugin.version>3.5.0</maven-bundle-plugin.version>
         <osgi.version>6.0.0</osgi.version>
         <junit.version>4.12</junit.version>
