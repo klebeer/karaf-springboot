@@ -1,6 +1,7 @@
 package ec.devnull.springboot.patch;
 
 import ec.devnull.springboot.config.ConfigService;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Filter;
 import org.osgi.framework.FrameworkUtil;
@@ -34,28 +35,33 @@ public abstract class PropertiesPostProcessor implements EnvironmentPostProcesso
 
 
         try {
-            BundleContext bundleContext = FrameworkUtil.getBundle(ConfigService.class).getBundleContext();
-            String objectclass = "(objectclass=" + ConfigService.class.getName() + ")";
-            String symbolicname = "(name=" + getSpringInstanceName() + ")";
-            Filter filter = FrameworkUtil.createFilter("(&" + objectclass + symbolicname + ")");
+            Bundle osgiBundle = FrameworkUtil.getBundle(ConfigService.class);
+            if (osgiBundle == null) {
+                return;
+            } else {
+                BundleContext bundleContext = osgiBundle.getBundleContext();
+                String objectclass = "(objectclass=" + ConfigService.class.getName() + ")";
+                String symbolicname = "(name=" + getSpringInstanceName() + ")";
+                Filter filter = FrameworkUtil.createFilter("(&" + objectclass + symbolicname + ")");
 
-            ServiceTracker<ConfigService, ConfigService> serviceTracker = new ServiceTracker<>(bundleContext, filter, null);
+                ServiceTracker<ConfigService, ConfigService> serviceTracker = new ServiceTracker<>(bundleContext, filter, null);
 
-            serviceTracker.open();
-            trackers.put(getSpringInstanceName(), serviceTracker);
+                serviceTracker.open();
+                trackers.put(getSpringInstanceName(), serviceTracker);
 
-            ConfigService configService = serviceTracker.getService();
-            Dictionary<String, String> properties = configService.getProperties();
+                ConfigService configService = serviceTracker.getService();
+                Dictionary<String, String> properties = configService.getProperties();
 
-            Enumeration<String> e = properties.keys();
-            Map<String, Object> propertySource = new HashMap<>();
+                Enumeration<String> e = properties.keys();
+                Map<String, Object> propertySource = new HashMap<>();
 
-            while (e.hasMoreElements()) {
-                String propName = e.nextElement();
-                propertySource.put(propName, properties.get(propName));
+                while (e.hasMoreElements()) {
+                    String propName = e.nextElement();
+                    propertySource.put(propName, properties.get(propName));
+                }
+
+                environment.getPropertySources().addFirst(new MapPropertySource(PROPERTY_SOURCE_NAME, propertySource));
             }
-
-            environment.getPropertySources().addFirst(new MapPropertySource(PROPERTY_SOURCE_NAME, propertySource));
 
         } catch (Exception e) {
             throw new IllegalStateException("Error fetching properties from Karaf");

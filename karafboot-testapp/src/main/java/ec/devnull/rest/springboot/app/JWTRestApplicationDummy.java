@@ -46,20 +46,13 @@ public class JWTRestApplicationDummy {
     private ConfigurableApplicationContext ctx = null;
 
     public static void main(String[] args) {
-     //   ConfigurableApplicationContext context = SpringApplication.run(JWTRestApplicationDummy.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(JWTRestApplicationDummy.class, args);
 
-//        for (String name : context.getBeanDefinitionNames()) {
-//            System.out.println(name);
-//        }
     }
 
     public void start() {
         String[] args = {};
         ctx = SpringApplication.run(JWTRestApplicationDummy.class, args);
-
-//        for (String name : ctx.getBeanDefinitionNames()) {
-//            System.out.println(name);
-//        }
 
     }
 
