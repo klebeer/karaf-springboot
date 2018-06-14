@@ -47,6 +47,8 @@ public class AbstractKarafBootTest {
                 karafDistributionConfiguration().frameworkUrl(karafUrl)
                         .unpackDirectory(new File("target/exam")).useDeployFolder(false), //
                 configureConsole(),
-                keepRuntimeFolder());
+                keepRuntimeFolder(),
+                features(maven().groupId("org.apache.karaf.features").artifactId("standard").type("xml")
+                        .classifier("features").versionAsInProject(), "scr"));
     }
 }

@@ -1,6 +1,8 @@
 package ec.devnull.springboot.app.test;
 
 import ec.devnull.springboot.config.ConfigService;
+import ec.devnull.dummy.service.DummyService;
+
 import ec.devnull.springboot.dummy.service.RestClientService;
 import ec.devnull.springboot.test.AbstractKarafBootTest;
 import org.hamcrest.CoreMatchers;
@@ -35,11 +37,17 @@ public class JWTRestApplicationDummyTest extends AbstractKarafBootTest {
     @Inject
     private RestClientService restClientService;
 
+    @Inject
+    private DummyService dummyService;
+
     @Configuration
     public Option[] config() {
         return options(
                 karafDefaults(),
+
                 applyConfig("karaf.springboot-test.cfg"),
+
+                mvnBundle("ec.devnull", "dummy-bundle-service"),
                 mvnBundle("ec.devnull", "karafboot-configuration"),
                 mvnBundle("ec.devnull", "karafboot-testapp"),
                 mvnBundle("ec.devnull", "dummy-bundle")
@@ -59,8 +67,9 @@ public class JWTRestApplicationDummyTest extends AbstractKarafBootTest {
     @Test
     public void springBootInstalledTest() {
         Assert.assertNotNull(restClientService);
+        Assert.assertNotNull(dummyService);
 
-        Optional<String> jwt=restClientService.login("601f1889667efaebb33b8c12572835da3f027f78");
+        Optional<String> jwt = restClientService.login("601f1889667efaebb33b8c12572835da3f027f78");
 
         Assert.assertThat(jwt.get(), CoreMatchers.containsString("Bearer"));
         System.out.println("JSON WEB TOKEN-->".concat(jwt.get()));

@@ -109,6 +109,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>ec.devnull</groupId>
+            <artifactId>dummy-bundle-service</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
 
 
     </dependencies>

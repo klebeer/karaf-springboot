@@ -13,12 +13,14 @@
 package ec.devnull.rest.springboot.app.controller;
 
 
+import ec.devnull.dummy.service.DummyService;
 import ec.devnull.rest.springboot.app.model.Order;
 import ec.devnull.rest.springboot.app.model.OrderResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.osgi.service.component.annotations.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
 
+    private DummyService dummyService;
+
     @RequestMapping(value = "/order/", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Procesa una Orden de una Empresa", response = OrderResponse.class)
     @ApiResponses(value = {
@@ -37,9 +41,14 @@ public class OrderController {
     }
     )
     public OrderResponse processOrder(Order order) {
+
         OrderResponse response = new OrderResponse().returnCode(1).returnCodeDesc("Todo Bien :)");
 
         return response;
     }
 
+    @Reference
+    public void setDummyService(DummyService dummyService) {
+        this.dummyService = dummyService;
+    }
 }

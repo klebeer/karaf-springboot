@@ -44,9 +44,11 @@
     <modules>
         <module>karafboot-configuration</module>
         <module>karafboot-patch</module>
+        <module>dummy-bundle-service</module>
         <module>karafboot-testapp</module>
         <module>karafboot-test</module>
         <module>dummy-bundle</module>
+
     </modules>
 
     <dependencyManagement>
