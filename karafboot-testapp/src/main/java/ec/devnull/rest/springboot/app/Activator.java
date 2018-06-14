@@ -6,6 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.springframework.boot.env.PropertiesPropertySourceLoader;
+import org.springframework.expression.spel.support.SimpleEvaluationContext;
 
 
 /**
@@ -20,10 +21,9 @@ public class Activator implements BundleActivator {
 
         ClassLoader ccl = Thread.currentThread().getContextClassLoader();
 
-        BundleContext context = FrameworkUtil.getBundle(Activator.class).getBundleContext();
-
         try {
             JoinClassLoader joinClassLoader = new JoinClassLoader(PropertiesPropertySourceLoader.class.getClassLoader(), ccl);
+
             Thread.currentThread().setContextClassLoader(joinClassLoader);
             SpringBootURLFactory.register();
             jwtRestApplication = new JWTRestApplicationDummy();

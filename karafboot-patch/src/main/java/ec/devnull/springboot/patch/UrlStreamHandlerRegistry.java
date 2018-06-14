@@ -1,5 +1,8 @@
 package ec.devnull.springboot.patch;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLStreamHandler;
@@ -16,6 +19,7 @@ import java.util.ServiceLoader;
 public class UrlStreamHandlerRegistry implements URLStreamHandlerFactory {
 
     private static UrlStreamHandlerRegistry SINGLETON;
+    private static Logger LOGGER = LoggerFactory.getLogger(UrlStreamHandlerRegistry.class);
     private final List<URLStreamHandlerFactory> factories = new ArrayList<>();
 
     /**
@@ -39,7 +43,7 @@ public class UrlStreamHandlerRegistry implements URLStreamHandlerFactory {
                     SINGLETON.providers();
 
                 } catch (Exception e) {
-                    //esto no va a pasar nuca de los nuncas
+                    LOGGER.error("Error at register  URL Stream ", e);
                 }
             }
             return SINGLETON;
