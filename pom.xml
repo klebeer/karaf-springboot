@@ -23,6 +23,7 @@
         <springboot.version>1.5.13.RELEASE</springboot.version>
         <maven-bundle-plugin.version>3.5.0</maven-bundle-plugin.version>
         <osgi.version>6.0.0</osgi.version>
+        <org.osgi.compendium.version>5.0.0</org.osgi.compendium.version>
         <junit.version>4.12</junit.version>
         <servicemix.bundles.javax-inject.version>1_2</servicemix.bundles.javax-inject.version>
         <pax.exam.version>4.10.0</pax.exam.version>
