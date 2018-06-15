@@ -297,7 +297,8 @@
                             javax.xml.bind.annotation,
                             javax.crypto,
                             javax.crypto.spec,
-                            org.osgi.util.tracker
+                            org.osgi.util.tracker,
+                            ec.devnull.dummy.service
 
                         </Import-Package>
 

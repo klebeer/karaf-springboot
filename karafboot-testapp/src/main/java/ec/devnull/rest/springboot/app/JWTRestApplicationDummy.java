@@ -17,6 +17,7 @@ import ec.devnull.rest.springboot.app.config.APIAuthenticationManager;
 import ec.devnull.rest.springboot.app.config.APISecurityConfig;
 import ec.devnull.rest.springboot.app.config.BasicAuthenticationPoint;
 import ec.devnull.rest.springboot.app.config.WebApplicationConfig;
+import ec.devnull.rest.springboot.app.controller.OSGServiceWrapper;
 import ec.devnull.rest.springboot.app.controller.OrderController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,6 +32,7 @@ import org.springframework.context.annotation.Import;
         WebApplicationConfig.class,
         TestPropertiesPostProcessor.class,
         OrderController.class,
+        OSGServiceWrapper.class,
         springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration.class,
         springfox.documentation.swagger2.mappers.ModelMapperImpl.class,
         springfox.documentation.swagger2.mappers.ParameterMapperImpl.class,
