@@ -12,44 +12,51 @@ import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
 
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 /**
  * @author Kleber Ayala
  */
 @SuppressWarnings("unchecked")
-public abstract class PropertiesPostProcessor implements EnvironmentPostProcessor, Ordered {
+public class PropertiesPostProcessor implements EnvironmentPostProcessor, Ordered {
 
 
     /**
      * Name of the custom property source added by this post processor class
      */
     private static final String PROPERTY_SOURCE_NAME = "karafProperties";
-    private Map<String, ServiceTracker<?, ?>> trackers = new HashMap<>();
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
 
 
         try {
-            Bundle osgiBundle = FrameworkUtil.getBundle(ConfigService.class);
+
+            Object sourceApp = application.getAllSources().toArray()[0];
+            String springClassName = ((Class) sourceApp).getCanonicalName();
+
+            Bundle osgiBundle = FrameworkUtil.getBundle(Class.forName(springClassName));
             if (osgiBundle == null) {
+                Map<String, Object> propertySource = loadDefaultProperties();
+                environment.getPropertySources().addFirst(new MapPropertySource(PROPERTY_SOURCE_NAME, propertySource));
                 return;
             } else {
+
                 BundleContext bundleContext = osgiBundle.getBundleContext();
                 String objectclass = "(objectclass=" + ConfigService.class.getName() + ")";
-                String symbolicname = "(name=" + getSpringInstanceName() + ")";
+                String symbolicname = "(name=" + springClassName + ")";
                 Filter filter = FrameworkUtil.createFilter("(&" + objectclass + symbolicname + ")");
 
                 ServiceTracker<ConfigService, ConfigService> serviceTracker = new ServiceTracker<>(bundleContext, filter, null);
-
                 serviceTracker.open();
-                trackers.put(getSpringInstanceName(), serviceTracker);
-
                 ConfigService configService = serviceTracker.getService();
+
+                if (configService == null) {
+                    return;
+                }
+
                 Dictionary<String, String> properties = configService.getProperties();
 
                 Enumeration<String> e = properties.keys();
@@ -61,14 +68,29 @@ public abstract class PropertiesPostProcessor implements EnvironmentPostProcesso
                 }
 
                 environment.getPropertySources().addFirst(new MapPropertySource(PROPERTY_SOURCE_NAME, propertySource));
+                serviceTracker.close();
             }
 
         } catch (Exception e) {
-            throw new IllegalStateException("Error fetching properties from Karaf");
+            throw new IllegalStateException("Error fetching properties from Karaf", e);
         }
     }
 
-    public abstract String getSpringInstanceName();
+    private Map<String, Object> loadDefaultProperties() throws IOException {
+        Map<String, Object> propertySource = new HashMap<>();
+        InputStream propStream = this.getClass().getClassLoader().getResourceAsStream("application.properties");
+        Properties defaultProperties = new Properties();
+        defaultProperties.load(propStream);
+
+        Enumeration<String> enums = (Enumeration<String>) defaultProperties.propertyNames();
+        while (enums.hasMoreElements()) {
+            String key = enums.nextElement();
+            String value = defaultProperties.getProperty(key);
+            propertySource.put(key, value);
+        }
+        return propertySource;
+    }
+
 
     @Override
     public int getOrder() {

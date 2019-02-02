@@ -1,0 +1,10 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name="karaf-boot-${project.version}">
+
+
+    <feature name="karaf-boot" version="${project.version}">
+        <bundle>mvn:ec.devnull/karafboot-configuration/${project.version}</bundle>
+        <bundle>mvn:io.swagger/swagger-annotations/${swagger-annotations.version}</bundle>
+    </feature>
+
+
+</features>

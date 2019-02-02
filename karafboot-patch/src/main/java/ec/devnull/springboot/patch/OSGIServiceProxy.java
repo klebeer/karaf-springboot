@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Just to get a OSGI service from springboot app
+ *
  * @author Kleber Ayala
  */
 public class OSGIServiceProxy<T> {

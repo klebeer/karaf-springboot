@@ -3,7 +3,6 @@ package ec.devnull.springboot.config;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedServiceFactory;
 
 import java.util.*;
@@ -25,7 +24,7 @@ public class SrpingBootConfigManager implements ManagedServiceFactory {
     }
 
     @Override
-    public void updated(final String pid, final Dictionary config) throws ConfigurationException {
+    public void updated(final String pid, final Dictionary config) {
         deleted(pid);
         if (config == null) {
             return;
@@ -46,7 +45,7 @@ public class SrpingBootConfigManager implements ManagedServiceFactory {
 
     @Override
     public void deleted(String pid) {
-       ServiceRegistration services = serviceRegistrationMap.remove(pid);
+        ServiceRegistration services = serviceRegistrationMap.remove(pid);
         if (services != null) {
             services.unregister();
         }

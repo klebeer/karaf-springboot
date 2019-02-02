@@ -4,7 +4,7 @@ import java.util.Dictionary;
 
 /**
  * Simple Karaf Properties Service implementation
-
+ *
  * @author Kleber Ayala
  */
 public class KarafConfigService implements ConfigService {

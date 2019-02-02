@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+    <parent>
+        <artifactId>karafboot-test</artifactId>
+        <groupId>ec.devnull</groupId>
+        <version>1.0.6-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>karafboot-testapp</artifactId>
+
+    <name>Karaf Boot ::: Spring Boot Test APP</name>
+    <description>Karaf Boot ::: Spring Boot Test APP</description>
+
+    <packaging>bundle</packaging>
+
+    <properties>
+        <start-class>ec.devnull.rest.springboot.app.JWTRestApplicationDummy</start-class>
+        <karafboot.version>${project.version}</karafboot.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>ec.devnull</groupId>
+            <artifactId>dummy-bundle-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Swagger 2 doc dependency -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+
+        <!-- Swagger UI dependency -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ec.devnull</groupId>
+            <artifactId>karafboot-patch</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>ec.devnull</groupId>
+                <artifactId>karafboot-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>prepare</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>patch</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>patch</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${maven-bundle-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+                        <Bundle-Activator>ec.devnull.rest.springboot.app.JWTRestApplicationDummy</Bundle-Activator>
+                        <Export-Package>
+
+                        </Export-Package>
+                        <DynamicImport-Package>
+                            javax.*,
+                            org.osgi.*,
+                            org.xml.*,
+                            org.ietf.*,
+                            ec.devnull.springboot.*,
+                            org.w3c.*
+                        </DynamicImport-Package>
+                        <Import-Package>
+                            ec.devnull.dummy.service,
+                        </Import-Package>
+
+                    </instructions>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+
+    </build>
+
+</project>

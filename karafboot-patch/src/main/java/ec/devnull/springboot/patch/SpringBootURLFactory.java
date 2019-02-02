@@ -7,7 +7,7 @@ import java.net.URLStreamHandler;
 import java.net.URLStreamHandlerFactory;
 
 /**
- * URL Factory para los protocolos war y classpath. que utiliza la instancia de tomcat-embed dentro de spting boot,
+ * URL Factory para los protocolos war y classpath. que utiliza la instancia de tomcat-embebed dentro de spting boot,
  * el Factory que se inicia normalmente fue deshabilitado y remplazado por esta instancia
  *
  * @author Kleber Ayala
