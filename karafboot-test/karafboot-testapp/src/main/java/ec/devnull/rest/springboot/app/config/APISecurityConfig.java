@@ -18,8 +18,12 @@ public class APISecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${devnull.http.auth-token-header-name}")
     private String principalRequestHeader;
 
+    private final APIAuthenticationManager apiAuthenticationManager;
+
     @Autowired
-    private APIAuthenticationManager apiAuthenticationManager;
+    public APISecurityConfig(APIAuthenticationManager apiAuthenticationManager) {
+        this.apiAuthenticationManager = apiAuthenticationManager;
+    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {

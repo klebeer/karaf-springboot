@@ -10,7 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class JWTRestApplicationDummy extends SpringBootActivator<JWTRestApplicationDummy> {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(JWTRestApplicationDummy.class, args);
+        SpringApplication.run(JWTRestApplicationDummy.class, args);
 
     }
 

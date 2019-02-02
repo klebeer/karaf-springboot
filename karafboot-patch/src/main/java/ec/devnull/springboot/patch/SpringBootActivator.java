@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.lang.reflect.ParameterizedType;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 /**
  * @author Kleber Ayala
@@ -21,9 +23,8 @@ public abstract class SpringBootActivator<T> implements BundleActivator {
 
         ClassLoader ccl = Thread.currentThread().getContextClassLoader();
         try {
-            Class<T> springAppClass = getGenericTypeClass();
-            JoinClassLoader joinClassLoader = new JoinClassLoader(springAppClass.getClassLoader(), ccl);
-            Thread.currentThread().setContextClassLoader(joinClassLoader);
+            Class<T> springAppClass = karafBootClassloader(ccl);
+
             SpringBootURLFactory.register();
             String[] args = {};
             SpringApplication springApplication = new SpringApplication(springAppClass);
@@ -35,13 +36,21 @@ public abstract class SpringBootActivator<T> implements BundleActivator {
         }
     }
 
+    private Class<T> karafBootClassloader(ClassLoader ccl) {
+        Class<T> springAppClass = getGenericTypeClass();
+        AccessController.doPrivileged((PrivilegedAction) () -> {
+            JoinClassLoader joinClassLoader = new JoinClassLoader(springAppClass.getClassLoader(), ccl);
+            Thread.currentThread().setContextClassLoader(joinClassLoader);
+            return null;
+        });
+        return springAppClass;
+    }
+
     @Override
     public void stop(BundleContext context) throws Exception {
         ClassLoader ccl = Thread.currentThread().getContextClassLoader();
         try {
-            Class<T> springAppClass = getGenericTypeClass();
-            JoinClassLoader joinClassLoader = new JoinClassLoader(springAppClass.getClassLoader(), ccl);
-            Thread.currentThread().setContextClassLoader(joinClassLoader);
+            karafBootClassloader(ccl);
             if (applicationContext != null) {
                 applicationContext.close();
             }

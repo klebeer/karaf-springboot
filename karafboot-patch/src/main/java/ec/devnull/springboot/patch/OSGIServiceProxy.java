@@ -17,7 +17,6 @@ public class OSGIServiceProxy<T> {
 
 
     private final Class<T> typeParameterClass;
-    private Map<String, ServiceTracker<?, ?>> trackers = new HashMap<>();
 
     public OSGIServiceProxy(Class<T> typeParameterClass) {
         this.typeParameterClass = typeParameterClass;

@@ -65,10 +65,11 @@ public class ConsoleTransferListener extends AbstractTransferListener {
 
     private void pad(StringBuilder buffer, int spaces) {
         String block = "                                        ";
-        while (spaces > 0) {
-            int n = Math.min(spaces, block.length());
+        int tmpSpaces=spaces;
+        while (tmpSpaces > 0) {
+            int n = Math.min(tmpSpaces, block.length());
             buffer.append(block, 0, n);
-            spaces -= n;
+            tmpSpaces -= n;
         }
     }
 

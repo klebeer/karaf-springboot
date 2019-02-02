@@ -72,14 +72,15 @@ public class KarafBootMaven {
         }
     }
 
-    public Artifact bundleResolve(String bundleLocation) throws ArtifactResolutionException {
-        bundleLocation = bundleLocation.substring(4, bundleLocation.length());
-        String groupId = bundleLocation.substring(0, bundleLocation.indexOf("/"));
-        bundleLocation = bundleLocation.substring(bundleLocation.indexOf("/") + 1, bundleLocation.length());
-        String artifactId = bundleLocation.substring(0, bundleLocation.indexOf("/"));
+    public Artifact bundleResolve(final String bundleLocation) throws ArtifactResolutionException {
+        String version = bundleLocation;
 
-        bundleLocation = bundleLocation.substring(bundleLocation.indexOf("/") + 1, bundleLocation.length());
-        String version = bundleLocation.substring(0, bundleLocation.length());
+        version = version.substring(4);
+        String groupId = version.substring(0, version.indexOf("/"));
+        version = version.substring(version.indexOf("/") + 1);
+        String artifactId = version.substring(0, version.indexOf("/"));
+        version = version.substring(version.indexOf("/") + 1);
+        bundleLocation.substring(0, version.length());
 
         return resolve(groupId, artifactId, version);
     }
@@ -113,15 +114,6 @@ public class KarafBootMaven {
     }
 
 
-    private RemoteRepository getCentralMavenRepository() {
-        return new RemoteRepository.Builder("central", "default", "http://central.maven.org/maven2/")
-                .build();
-    }
-
-    private RemoteRepository newCentralRepository() {
-        return new RemoteRepository.Builder("central", "default", "http://central.maven.org/maven2/").build();
-    }
-
     private List<RemoteRepository> repos() {
         List<RemoteRepository> repositories = new ArrayList<>();
         for (ArtifactRepository artifactRepository : artifactRepositoryList) {
@@ -132,11 +124,8 @@ public class KarafBootMaven {
 
     private List<RemoteRepository> reposKaraf() {
         List<RemoteRepository> repositories = new ArrayList<>();
-        try {
-            File cfgRepo = new File(KARAF_ETC + File.separator + REPO);
-            FileInputStream fis = null;
-
-            fis = new FileInputStream(cfgRepo);
+        File cfgRepo = new File(KARAF_ETC + File.separator + REPO);
+        try (FileInputStream fis = new FileInputStream(cfgRepo)) {
 
             Properties properties = new Properties();
             properties.load(fis);

@@ -31,7 +31,7 @@ public class KarafBootPatchMojo extends AbstractMojo {
     @Parameter(property = "start-class", defaultValue = "${start-class}")
     private String startClass;
 
-    @Component(hint = "default", role = org.apache.maven.plugins.shade.Shader.class)
+    @Component(hint = "default", role = Shader.class)
     private Shader shader;
 
     @Parameter(defaultValue = "${project}")
@@ -57,7 +57,7 @@ public class KarafBootPatchMojo extends AbstractMojo {
         }
     }
 
-    private void shade() throws IllegalAccessException, MojoExecutionException, DependencyResolutionRequiredException, MalformedURLException {
+    private void shade() throws IllegalAccessException, MojoExecutionException {
 
 
         ShadeMojo shadeMojo = new ShadeMojo();
