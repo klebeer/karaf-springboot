@@ -28,7 +28,7 @@
         <junit.version>4.12</junit.version>
         <servicemix.bundles.javax-inject.version>1_2</servicemix.bundles.javax-inject.version>
         <pax.exam.version>4.13.1</pax.exam.version>
-        <karaf.version>4.2.1</karaf.version>
+        <karaf.version>4.2.2</karaf.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j-slf4j>2.8.2</log4j-slf4j>
         <jaxws-api.version>2.2.0</jaxws-api.version>
