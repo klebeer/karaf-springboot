@@ -6,7 +6,7 @@ cache:
 jdk:
   - oraclejdk8
 
-install: travis_wait 10 mvn install
+install: travis_wait 30 mvn install
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t d79bfa7e-9b88-4a17-ba8a-7ee78e55dac6
