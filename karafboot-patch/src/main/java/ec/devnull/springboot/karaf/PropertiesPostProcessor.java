@@ -1,4 +1,4 @@
-package ec.devnull.springboot.patch;
+package ec.devnull.springboot.karaf;
 
 import ec.devnull.springboot.config.ConfigService;
 import org.osgi.framework.Bundle;

@@ -1,4 +1,4 @@
-package ec.devnull.springboot.patch;
+package ec.devnull.springboot.karaf;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

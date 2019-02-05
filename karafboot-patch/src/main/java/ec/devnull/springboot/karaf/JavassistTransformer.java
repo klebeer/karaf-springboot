@@ -1,4 +1,4 @@
-package ec.devnull.springboot.patch;
+package ec.devnull.springboot.karaf;
 
 import javassist.*;
 
@@ -100,7 +100,7 @@ public class JavassistTransformer {
 
         resourcePatch.put(METHOD, "doFindPathMatchingFileResources");
         resourcePatch.put(METHOD_PARAMS, new CtClass[]{urlResource, stringClass});
-        resourcePatch.put(BODY_REPLACEMENT, "{  ec.devnull.springboot.patch.BundleURL bundleURL=new ec.devnull.springboot.patch.BundleURL(); return bundleURL.findResources($1,$2);  }");
+        resourcePatch.put(BODY_REPLACEMENT, "{  ec.devnull.springboot.karaf.BundleURL bundleURL=new ec.devnull.springboot.karaf.BundleURL(); return bundleURL.findResources($1,$2);  }");
 
         targetClasses.put("org.springframework.core.io.support.PathMatchingResourcePatternResolver", resourcePatch);
 
@@ -140,7 +140,7 @@ public class JavassistTransformer {
                 "        }\n" +
                 "        else {\n" +
                 "            //let's assume the $1 can return the jar as a zip stream\n" +
-                "            return new ec.devnull.springboot.patch.JarInputStreamBasedArchiveDescriptor( this, $1, $2 );\n" +
+                "            return new ec.devnull.springboot.karaf.JarInputStreamBasedArchiveDescriptor( this, $1, $2 );\n" +
                 "        } }");
 
 

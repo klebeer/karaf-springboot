@@ -1,4 +1,4 @@
-package ec.devnull.springboot.patch;
+package ec.devnull.springboot.karaf;
 
 import org.apache.catalina.webresources.ClasspathURLStreamHandler;
 import org.apache.catalina.webresources.war.Handler;

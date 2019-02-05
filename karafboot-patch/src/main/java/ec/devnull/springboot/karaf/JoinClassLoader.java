@@ -1,4 +1,4 @@
-package ec.devnull.springboot.patch;
+package ec.devnull.springboot.karaf;
 
 import java.io.IOException;
 import java.io.InputStream;

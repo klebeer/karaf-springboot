@@ -1,12 +1,8 @@
-package ec.devnull.springboot.patch;
+package ec.devnull.springboot.karaf;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
-import org.osgi.util.tracker.ServiceTracker;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Just to get a OSGI service from springboot app

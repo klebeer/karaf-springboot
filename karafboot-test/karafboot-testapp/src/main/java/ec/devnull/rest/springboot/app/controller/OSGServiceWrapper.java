@@ -1,7 +1,7 @@
 package ec.devnull.rest.springboot.app.controller;
 
 import ec.devnull.dummy.service.DummyService;
-import ec.devnull.springboot.patch.OSGIServiceProxy;
+import ec.devnull.springboot.karaf.OSGIServiceProxy;
 import org.springframework.stereotype.Component;
 
 /**

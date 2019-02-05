@@ -146,7 +146,7 @@ public class KarafBootMojo extends AbstractMojo {
 
         Field mainClass = ExecJavaMojo.class.getDeclaredField("mainClass");
         mainClass.setAccessible(true);
-        mainClass.set(execJavaMojo, "ec.devnull.springboot.patch.JavassistTransformer");
+        mainClass.set(execJavaMojo, "ec.devnull.springboot.karaf.JavassistTransformer");
 
         Field arguments = ExecJavaMojo.class.getDeclaredField("arguments");
         arguments.setAccessible(true);

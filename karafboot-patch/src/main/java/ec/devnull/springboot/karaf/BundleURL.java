@@ -1,4 +1,4 @@
-package ec.devnull.springboot.patch;
+package ec.devnull.springboot.karaf;
 
 import ec.devnull.aether.KarafBootMaven;
 import lombok.extern.slf4j.Slf4j;
