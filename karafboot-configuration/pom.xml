@@ -63,10 +63,10 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>ec.devnull.springboot.config.Activator</Bundle-Activator>
+                        <Bundle-Activator>ec.devnull.karafboot.config.Activator</Bundle-Activator>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
-                        <Export-Package>ec.devnull.springboot.config</Export-Package>
+                        <Export-Package>ec.devnull.karafboot.config</Export-Package>
                         <Import-Package>
                             org.osgi.framework,
                             org.osgi.service.cm,

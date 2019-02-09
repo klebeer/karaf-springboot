@@ -1,7 +1,7 @@
 package ec.devnull.rest.springboot.app;
 
 
-import ec.devnull.springboot.karaf.SpringBootActivator;
+import ec.devnull.karafboot.SpringBootActivator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

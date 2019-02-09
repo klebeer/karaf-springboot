@@ -53,12 +53,12 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>ec.devnull.springboot.dummy.Activator</Bundle-Activator>
+                        <Bundle-Activator>ec.devnull.karafboot.dummy.Activator</Bundle-Activator>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
                         <Export-Package>
-                            ec.devnull.springboot.dummy.service,
-                            ec.devnull.springboot.dummy.model
+                            ec.devnull.karafboot.dummy.service,
+                            ec.devnull.karafboot.dummy.model
                         </Export-Package>
                         <Import-Package>
                             org.osgi.framework,

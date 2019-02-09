@@ -138,7 +138,7 @@
                             org.osgi.*,
                             org.xml.*,
                             org.ietf.*,
-                            ec.devnull.springboot.*,
+                            ec.devnull.karafboot.*,
                             org.w3c.*
                         </DynamicImport-Package>
                         <Import-Package>
