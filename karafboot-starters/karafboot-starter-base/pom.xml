@@ -115,7 +115,7 @@
 
         <dependency>
             <groupId>ec.devnull</groupId>
-            <artifactId>karafboot-patch</artifactId>
+            <artifactId>karafboot</artifactId>
             <version>${project.version}</version>
         </dependency>
 

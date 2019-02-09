@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <artifactId>karafboot-patch</artifactId>
+    <artifactId>karafboot</artifactId>
 
     <name>Karaf Boot ::: Spring Boot Patch</name>
     <description>Karaf Boot ::: Spring Boot Patch</description>

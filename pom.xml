@@ -59,7 +59,7 @@
         <module>karafboot-configuration</module>
         <module>karafboot-dependencies</module>
         <module>karafboot-starters</module>
-        <module>karafboot-patch</module>
+        <module>karafboot</module>
         <module>karafboot-test</module>
         <module>karafboot-features</module>
 

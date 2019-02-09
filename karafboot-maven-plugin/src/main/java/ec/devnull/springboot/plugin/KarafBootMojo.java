@@ -140,7 +140,7 @@ public class KarafBootMojo extends AbstractMojo {
 
         KarafBootMaven karafBootMaven = new KarafBootMaven(repositories);
         org.eclipse.aether.artifact.Artifact javassistAether = karafBootMaven.resolve("org.javassist", "javassist", "3.22.0-GA");
-        org.eclipse.aether.artifact.Artifact karafbootPatchAether = karafBootMaven.resolve("ec.devnull", "karafboot-patch", projectVersion);
+        org.eclipse.aether.artifact.Artifact karafbootPatchAether = karafBootMaven.resolve("ec.devnull", "karafboot", projectVersion);
         org.eclipse.aether.artifact.Artifact hibernateAether = karafBootMaven.resolve("org.hibernate", "hibernate-core", "5.0.12.Final");
 
 
@@ -172,7 +172,7 @@ public class KarafBootMojo extends AbstractMojo {
 
 
         Artifact javassist = defaultArtifactFactory.createArtifact("org.javassist", "javassist", "3.22.0-GA", "compile", "jar");
-        Artifact karafbootPatch = defaultArtifactFactory.createArtifact("ec.devnull", "karafboot-patch", projectVersion, "compile", "jar");
+        Artifact karafbootPatch = defaultArtifactFactory.createArtifact("ec.devnull", "karafboot", projectVersion, "compile", "jar");
 
         javassist.setFile(javassistAether.getFile());
         karafbootPatch.setFile(karafbootPatchAether.getFile());
